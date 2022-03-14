@@ -5,9 +5,14 @@ ruby "3.1.1"
 
 gem 'tzinfo-data'
 
+
+
 # Gemfile
 gem 'ruby_cowsay'
 gem 'jbuilder'
+
+# mongo
+gem 'mongo'
 
 gem 'sprockets-rails'
 

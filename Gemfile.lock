@@ -68,6 +68,7 @@ GEM
       tzinfo (~> 2.0)
     bootsnap (1.10.3)
       msgpack (~> 1.2)
+    bson (4.14.1)
     builder (3.2.4)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
@@ -96,6 +97,8 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.2)
     minitest (5.15.0)
+    mongo (2.17.0)
+      bson (>= 4.8.2, < 5.0.0)
     msgpack (1.4.5)
     net-imap (0.2.3)
       digest
@@ -177,6 +180,7 @@ DEPENDENCIES
   bootsnap
   debug
   jbuilder
+  mongo
   puma (~> 5.0)
   rails (~> 7.0.2, >= 7.0.2.2)
   ruby_cowsay
