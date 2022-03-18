@@ -4,33 +4,23 @@ class ReceiveController < ApplicationController
 
     def message
 
-        # require 'mongo'
-        
-        # Mongo::Logger.logger.level = ::Logger::DEBUG
-        # like debug but easier to read?
+        # connect to mongo 
         Mongo::Logger.logger.level = ::Logger::FATAL 
-        
         client = Mongo::Client.new(MONGODB_CONN_URL)
 
+        # open up collection and query
         db = client.database
-        collection = db[:test]
-
-        # doc = {"message": "is this working" }
-        # result = collection.insert_one(doc)
-        # @message = "Record inserted - id: #{result.inserted_id}"
-
+        collection = db[:messages]
         records = collection.find()
 
+        # get data
+        @message = ""
         records.each do |rec|
-            rec.attributes.each do |k, v|
-                next if k == '_id' # skip the _id field
-                @message = @message + "#{k} #{v}"
-            end
+            @message += rec[:message]
         end
-          @message = "db test #{collection.find()}"
-        client[:test].find.each { |doc| puts doc }
+
+        # close
         client.close
 
-        # @message = 'receiving message'
     end
 end
