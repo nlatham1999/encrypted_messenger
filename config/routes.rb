@@ -7,4 +7,9 @@ Rails.application.routes.draw do
   post 'send', to: 'send#message'
 
   get 'receive', to: 'receive#message'
+
+  get 'ecdsa', to: 'ecdsa#keys'
+
+  get 'rsa', to: 'rsa#keys'
+
 end

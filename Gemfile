@@ -11,6 +11,12 @@ gem 'tzinfo-data'
 gem 'ruby_cowsay'
 gem 'jbuilder'
 
+# ecdsa [https://github.com/DavidEGrayson/ruby_ecdsa]
+gem 'ecdsa'
+
+# random numbers
+gem 'securerandom'
+
 # mongo
 gem 'mongo'
 

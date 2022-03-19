@@ -76,6 +76,7 @@ GEM
       irb (>= 1.3.6)
       reline (>= 0.2.7)
     digest (3.1.0)
+    ecdsa (1.2.0)
     erubi (1.10.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -154,6 +155,7 @@ GEM
     reline (0.3.1)
       io-console (~> 0.5)
     ruby_cowsay (0.1.3)
+    securerandom (0.2.0)
     sprockets (4.0.3)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -179,11 +181,13 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   debug
+  ecdsa
   jbuilder
   mongo
   puma (~> 5.0)
   rails (~> 7.0.2, >= 7.0.2.2)
   ruby_cowsay
+  securerandom
   sprockets-rails
   tzinfo-data
 
