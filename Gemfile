@@ -14,6 +14,8 @@ gem 'jbuilder'
 # ecdsa [https://github.com/DavidEGrayson/ruby_ecdsa]
 gem 'ecdsa'
 
+gem 'base58'
+
 # random numbers
 gem 'securerandom'
 

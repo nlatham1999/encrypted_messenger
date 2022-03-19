@@ -1,15 +1,15 @@
 class EcdsaController < ApplicationController
     def keys
+        curve = OpenSSL::PKey::EC.new('secp256k1')
+        curve.generate_key
 
-        group = ECDSA::Group::Secp256k1
-        private_key = 1 + SecureRandom.random_number(group.order - 1)
-        puts 'private key: %#x' % private_key
+        private_key = Base58.int_to_base58(Integer(curve.private_key.to_s()))
 
-        public_key = group.generator.multiply_by_scalar(private_key)
-        puts 'public key: '
-        puts '  x: %#x' % public_key.x
-        puts '  y: %#x' % public_key.y
+        h =  curve.public_key.to_bn().to_s(16)
 
-        @keys = { "private_key" => private_key, "public_key" => {"x" => public_key.x, "y" => public_key.y} }
+        hash = Digest::SHA2.new(256).hexdigest h
+        hash_58 =  Base58.int_to_base58(hash.to_i(16))
+
+        @keys = { "private_key" => private_key, "address" => hash_58 }
     end
 end

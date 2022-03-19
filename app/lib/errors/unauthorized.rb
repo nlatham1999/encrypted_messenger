@@ -5,7 +5,7 @@ module Errors
           title: "Unauthorized",
           status: 401,
           detail: "unauthorized access",
-          source: { pointer: "/request/headers/authorization" }
+          source: { pointer: "/send" }
         )
       end
     end
