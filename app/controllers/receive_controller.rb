@@ -2,8 +2,8 @@ include Errors
 
 class ReceiveController < ApplicationController
     
-    MONGODB_CONN_URL = "mongodb+srv://Admin:100Admin!@cluster0.ovcjj.mongodb.net/Cluster0?retryWrites=true&w=majority"
-
+    MONGODB_CONN_URL = ENV['MONGODB_URL']
+    
     def message
         begin
 

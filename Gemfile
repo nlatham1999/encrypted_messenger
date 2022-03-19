@@ -5,7 +5,7 @@ ruby "3.1.1"
 
 gem 'tzinfo-data'
 
-
+gem 'dotenv'
 
 # Gemfile
 gem 'ruby_cowsay'

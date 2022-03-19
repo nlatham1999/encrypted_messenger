@@ -18,3 +18,5 @@
 !/tmp/pids/
 !/tmp/pids/.keep
 
+.env
+
