@@ -1,1 +1,1 @@
-json.message @keys
+json.message @message

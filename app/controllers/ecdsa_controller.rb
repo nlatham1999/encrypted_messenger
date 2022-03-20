@@ -10,6 +10,6 @@ class EcdsaController < ApplicationController
         hash = Digest::SHA2.new(256).hexdigest h
         hash_58 =  Base58.int_to_base58(hash.to_i(16))
 
-        @keys = { "private_key" => private_key, "address" => hash_58 }
+        @message = { "private_key" => private_key, "address" => hash_58 }
     end
 end
