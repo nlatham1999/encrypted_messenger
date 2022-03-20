@@ -1,1 +1,29 @@
-<h1>hello world</h1>
+
+<h1>encrypted messaging</h1>
+
+<h2>how it works</h2>
+<p>you can post messages with a pass phrase and anyone with that pass phrase will be able to view that message</p>
+<p>messages are encrypted using PKCS5<p/>
+<p>authentication of the sender is done with the ECDSA signature algorithm using the secp256k1 curve (same as Bitcoin)</p>
+
+<h2>posting a message: /send</h2>
+<p>parameters</p>
+<ul>
+    <li>message: the message you want encrypted and stored</li>
+    <li>private_key: the private key in base 58 </li>
+    <li>address: the address which is the public key that has been hashed using SHA265 and then converted to base 58</li>
+    <li>pass_phrase: the pass phrase used to encrypt your message. must be at least 16 characters
+</ul>
+
+<h2>getting a key pair: /ecdsa</h2>
+
+<h2>getting a message /receive</h2>
+<p>parameters</p>
+<ul>
+    <li>message_id: the id of the message</li>
+    <li>pass_phrase: the pass phrase used to encrypt your message. must be at least 16 characters
+</ul>
+
+
+
+

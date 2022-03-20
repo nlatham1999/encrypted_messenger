@@ -55,7 +55,7 @@ class SendController < ApplicationController
             result = collection.insert_one(doc)
 
             # set status message
-            @message = "Record inserted - id: #{result.inserted_id}"
+            @message = { "status" => 200, "id" => result.inserted_id}
             return
                 
         # error handling
