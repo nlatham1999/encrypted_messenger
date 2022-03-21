@@ -7,6 +7,8 @@ gem 'tzinfo-data'
 
 gem 'dotenv'
 
+gem 'webpacker'
+
 # Gemfile
 gem 'ruby_cowsay'
 gem 'jbuilder'
