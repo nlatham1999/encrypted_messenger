@@ -128,7 +128,7 @@ function Hello () {
           <p>messages are encrypted using PKCS5</p>
           <p>authentication of the sender is done with the ECDSA signature algorithm using the secp256k1 curve (same as Bitcoin)</p>
           <p>messages are stored in a centralized database using mongodb (like decentralized but faster and better). </p>
-          <p>created using Ruby (backend) with React (frontend)</p>
+          <p>created using Ruby (backend) with React (frontend) and lots of tlc</p>
         </div>
 
         <h2 className='generalHeaders'>posting a message: /send</h2>
