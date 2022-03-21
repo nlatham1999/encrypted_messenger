@@ -7,6 +7,18 @@ html {
     background-color: whitesmoke;
 }
 
+.button {
+    text-align: right;
+}
+
+.cardSection {
+    margin-top: 2vh;
+}
+
+.formSection {
+    padding-top: 1vh;
+}
+
 .overall {
     --marginMain: 5vmin;
 

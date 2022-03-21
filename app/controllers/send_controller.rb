@@ -7,10 +7,10 @@ class SendController < ApplicationController
     def message
         # verification
         begin
-            params.require(:message)
             params.require(:private_key)
             params.require(:address)
             params.require(:pass_phrase)
+            params.require(:message)
             # params.require(:min)
 
             # get parameters

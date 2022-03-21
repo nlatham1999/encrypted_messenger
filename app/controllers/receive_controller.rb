@@ -11,6 +11,8 @@ class ReceiveController < ApplicationController
             params.require(:pass_phrase)
             params.require(:message_id)
 
+            puts "got here"
+
             # get parameters
             message_id = params[:message_id]
             pass_phrase_and_salt = params[:pass_phrase]
@@ -56,8 +58,8 @@ class ReceiveController < ApplicationController
             e = Errors::Passphrase.new
         rescue Errors::NotFound
             e = Errors::NotFound.new
-        rescue => exception
-            e = Errors::Internal.new
+        # rescue => exception
+        #     e = Errors::Internal.new
         end
         render json: ErrorSerializer.new(e), status: e.status
 
