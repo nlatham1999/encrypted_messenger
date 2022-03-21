@@ -124,9 +124,11 @@ function Hello () {
         <p><a href="#testing">test this api</a></p>
         <h2 className='generalHeaders'>how it works</h2>
         <div className='generalText'>
-          <p>you can post messages with a pass phrase and anyone with that pass phrase will be able to view that message</p>
+          <p>you post messages with a pass phrase and anyone with that pass phrase and message id will be able to view that message</p>
           <p>messages are encrypted using PKCS5</p>
           <p>authentication of the sender is done with the ECDSA signature algorithm using the secp256k1 curve (same as Bitcoin)</p>
+          <p>messages are stored in a centralized database using mongodb (like decentralized but faster and better). </p>
+          <p>created using Ruby (backend) with React (frontend)</p>
         </div>
 
         <h2 className='generalHeaders'>posting a message: /send</h2>
