@@ -31,7 +31,7 @@ function Hello () {
   }, [])
 
   let getKeyPair = async () => {
-    let res = await fetch("http://localhost:3000/ecdsa", {
+    let res = await fetch("https://encryptedposting.herokuapp.com/ecdsa", {
         method: "GET",
         headers: {
         "Content-Type": "application/json",
@@ -50,7 +50,7 @@ function Hello () {
       setShowAlert(true)
     }
     console.log(postMessage)
-    let res = await fetch("http://localhost:3000/send", {
+    let res = await fetch("https://encryptedposting.herokuapp.com/send", {
         method: "POST",
         headers: {
         "Content-Type": "application/json",
@@ -88,7 +88,7 @@ function Hello () {
     }
     let id = getMessageId.toString()
     let pass = getPassPhrase.toString()
-    let res = await fetch("http://localhost:3000/receive?pass_phrase="+pass+"&message_id="+id, {
+    let res = await fetch("https://encryptedposting.herokuapp.com/receive?pass_phrase="+pass+"&message_id="+id, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
