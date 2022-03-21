@@ -1,0 +1,53 @@
+
+html {
+    background-color: whitesmoke;
+}
+
+.wholePage {
+    background-color: whitesmoke;
+}
+
+.overall {
+    --marginMain: 5vmin;
+
+
+    background-color: white;
+    font-family: Lato, sans-serif;
+    /* /* width: 90vw; */
+    /* width: 90vw; */
+    /* height: 90vh; */
+    /* margin-left: 5vw; */
+    /* margin-right: 5vh; */
+    /* margin-top: 5vh;  */
+    margin: var(--marginMain);
+    /* margin-top: var(--marginMain); */
+
+    
+    min-width: calc(100vw - (2 * var(--marginMain)));
+    height: calc(100vh - (2 * var(--marginMain)));
+
+    
+
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.overall::-webkit-scrollbar {
+    display: none;
+}
+
+.generalText {
+    color: #5d6879;
+    font-size: medium;
+}
+
+.generalHeaders {
+    color:#505050;
+    font-size: large;
+}
+
+.topHeader {
+    font-size: x-large;
+}
