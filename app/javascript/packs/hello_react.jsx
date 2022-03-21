@@ -6,7 +6,7 @@ import React from 'react'
 import { useEffect, useState } from "react";
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import { Card, Modal, Button, Container, Form, Row, Col } from "react-bootstrap";
+import { Card, Alert, Modal, Button, Container, Form, Row, Col } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Hello () {
@@ -22,6 +22,8 @@ function Hello () {
   const [getMessageId, setGetMessageId] = useState("")
   const [getPassPhrase, setGetPassPhrase] = useState("")
   const [getMessage, setGetMessage] = useState("")
+  const [showAlert, setShowAlert] = useState(false)
+  const [alertMessage, setAlertMessage] = useState("")
   
 
   useEffect(() => {
@@ -38,9 +40,15 @@ function Hello () {
     let keyPair = await res.json();
     setPrivateKey(keyPair.message.private_key)
     setAddress(keyPair.message.address)
+    setUserPrivateKey(keyPair.message.private_key)
+    setUserAddress(keyPair.message.address)
   }
 
   let postEnteredMessage = async () => {
+    if(userPrivateKey.length == 0 || userAddress.length == 0 || postPassPhrase.length == 0 || postMessage.length == 0){
+      setAlertMessage("missing parameters")
+      setShowAlert(true)
+    }
     console.log(postMessage)
     let res = await fetch("http://localhost:3000/send", {
         method: "POST",
@@ -48,8 +56,8 @@ function Hello () {
         "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          "private_key": privateKey,
-          "address": address,
+          "private_key": userPrivateKey,
+          "address": userAddress,
           "pass_phrase": postPassPhrase,
           "message": postMessage,
         })
@@ -58,13 +66,26 @@ function Hello () {
     try{
       console.log(res.message.id["$oid"])
       setPostMessageId(res.message.id["$oid"])
+      setGetPassPhrase(postPassPhrase)
+      setGetMessageId(res.message.id["$oid"])
     }
     catch {
       console.log("whoops")
+      console.log(res)
+      try{
+        setAlertMessage(res.errors[0].title)
+        setShowAlert(true)
+      }catch{
+
+      }
     }
   }
 
   let getUserMessage = async () => {
+    if(getMessageId.length == 0 || getPassPhrase.length == 0){
+      setAlertMessage("missing parameters")
+      setShowAlert(true)
+    }
     let id = getMessageId.toString()
     let pass = getPassPhrase.toString()
     let res = await fetch("http://localhost:3000/receive?pass_phrase="+pass+"&message_id="+id, {
@@ -78,12 +99,25 @@ function Hello () {
       setGetMessage(res.message)
     }catch{
       console.log("whoops")
+      console.log(res)
+      try{
+        setAlertMessage(res.errors[0].title)
+        setShowAlert(true)
+      }catch{
+
+      }
     }
   }
   
 
   return (
     <div className='wholePage'>
+      {showAlert && <Alert variant="danger" onClose={() => setShowAlert(false)} dismissible>
+        <Alert.Heading>error</Alert.Heading>
+        <p>
+          {alertMessage}
+        </p>
+      </Alert>}
       <Container  className='overall'>
         <h1 className='generalHeaders topHeader'>encrypted messaging api</h1>
         <p className='generalText'>created by <a href="https://nicholaslatham.com">nick latham</a></p>
@@ -136,6 +170,7 @@ function Hello () {
             address: {address}
           </Card.Body>
         </Card>
+
         <Card className='cardSection'>
           <Card.Header>
             <Row>
@@ -151,6 +186,7 @@ function Hello () {
             <Form.Group className='formSection'>
                 <Form.Label >private key</Form.Label>
                 <Form.Control 
+                    defaultValue={privateKey} 
                     onChange={(event) => {setUserPrivateKey(event.target.value)}}
                 />
             </Form.Group>
@@ -158,6 +194,7 @@ function Hello () {
             <Form.Group className='formSection'>
                 <Form.Label >address</Form.Label>
                 <Form.Control 
+                    defaultValue={address} 
                     onChange={(event) => {setUserAddress(event.target.value)}}
                 />
             </Form.Group>
@@ -165,6 +202,7 @@ function Hello () {
             <Form.Group className='formSection'>
                 <Form.Label >pass phrase</Form.Label>
                 <Form.Control 
+                    placeholder={"your passphrase e.g.(the red dog runs fast)"}
                     onChange={(event) => {setPostPassPhrase(event.target.value)}}
                 />
             </Form.Group>
@@ -172,6 +210,7 @@ function Hello () {
             <Form.Group className='formSection'>
                 <Form.Label >message</Form.Label>
                 <Form.Control 
+                    placeholder={"your message"}
                     onChange={(event) => {setPostMessage(event.target.value)}}
                 />
             </Form.Group>
@@ -195,12 +234,14 @@ function Hello () {
             <Form.Group className='formSection'>
                 <Form.Label >message id</Form.Label>
                 <Form.Control 
+                    defaultValue={postMessageId} 
                     onChange={(event) => {setGetMessageId(event.target.value)}}
                 />
             </Form.Group>
             <Form.Group className='formSection'>
                 <Form.Label >pass phrase</Form.Label>
                 <Form.Control 
+                    defaultValue={postPassPhrase} 
                     onChange={(event) => {setGetPassPhrase(event.target.value)}}
                 />
             </Form.Group>
