@@ -55,12 +55,20 @@ class SendController < ApplicationController
             db = client.database
             collection = db[:messages]
 
+            # check to make sure the username is there
+            user_collection = db[:users]
+            user_record = user_collection.find(:address => address).first
+            raise Errors::NoUser unless user_record != nil and user_record[:username] != nil
+
+            username = user_record[:username]
+
             # insert data
             doc = {
                 "dateCreated": DateTime.now,
                 "message": encoded, 
                 "address": address ,
-                "message_type": message_type
+                "message_type": message_type,
+                "username": username
             }
             result = collection.insert_one(doc)
 
@@ -75,6 +83,8 @@ class SendController < ApplicationController
             e = Errors::Unauthorized.new
         rescue Errors::Passphrase
             e = Errors::Passphrase.new
+        rescue Errors::NoUser
+            e = Errors::NoUser.new
         # rescue => exception
         #     e = Errors::Internal.new
         end

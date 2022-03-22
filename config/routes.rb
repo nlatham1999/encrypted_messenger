@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root "main#index"
 
   # delete everything
-  # post 'delete', to: 'delete#collections'
+  post 'delete', to: 'delete#collections'
 
   # posting a message
   post 'send', to: 'send#message'
