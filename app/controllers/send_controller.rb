@@ -85,8 +85,8 @@ class SendController < ApplicationController
             e = Errors::Passphrase.new
         rescue Errors::NoUser
             e = Errors::NoUser.new
-        # rescue => exception
-        #     e = Errors::Internal.new
+        rescue => exception
+            e = Errors::Internal.new
         end
         render json: ErrorSerializer.new(e), status: e.status
     end

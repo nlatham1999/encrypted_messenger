@@ -43,6 +43,7 @@ function Hello () {
 
     });
     let keyPair = await res.json();
+    console.log(keyPair)
     setPrivateKey(keyPair.message.private_key)
     setAddress(keyPair.message.address)
     setUserPrivateKey(keyPair.message.private_key)

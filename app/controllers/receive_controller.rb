@@ -58,8 +58,8 @@ class ReceiveController < ApplicationController
             e = Errors::Passphrase.new
         rescue Errors::NotFound
             e = Errors::NotFound.new
-        # rescue => exception
-        #     e = Errors::Internal.new
+        rescue => exception
+            e = Errors::Internal.new
         end
         render json: ErrorSerializer.new(e), status: e.status
 
