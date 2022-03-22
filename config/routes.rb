@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   #add user
   post 'add', to: 'add#user'
 
+  # generate new user with key pair
+  post 'generate', to: 'generate#user'
+
   # generate a keypair
   get 'ecdsa', to: 'ecdsa#keys'
 

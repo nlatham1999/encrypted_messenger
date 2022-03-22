@@ -38,6 +38,10 @@ class AddController < ApplicationController
             
             records = collection.find(:address => address).first
 
+            
+            username_records = collection.find(:username => username).first
+            raise Errors::UserExists unless username_records == nil || username_records.count() == 0
+
             status_message = ""
             if records != nil and records.count() != 0
                 collection.update_one({"address": address},{'$set' => {"username": username}})
@@ -60,6 +64,8 @@ class AddController < ApplicationController
             e = Errors::Unauthorized.new
         rescue Errors::Passphrase
             e = Errors::Passphrase.new
+        rescue Errors::UserExists
+            e = Errors::UserExists.new
         # rescue => exception
         #     e = Errors::Internal.new
         end
