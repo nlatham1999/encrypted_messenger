@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "main#index"
 
+  # delete everything
+  # post 'delete', to: 'delete#collections'
+
   post 'send', to: 'send#message'
 
   get 'receive', to: 'receive#message'

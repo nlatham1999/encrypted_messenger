@@ -19,6 +19,11 @@ class SendController < ApplicationController
             address = params[:address]
             pass_phrase_and_salt = params[:pass_phrase]
 
+            message_type = ""
+            if params[:message_type].present?
+                message_type = params[:message_type]
+            end
+
             # make sure message is not empty
             raise Errors::MessageParameter unless message != ""
 
@@ -51,7 +56,12 @@ class SendController < ApplicationController
             collection = db[:messages]
 
             # insert data
-            doc = {"message": encoded, "address": address }
+            doc = {
+                "dateCreated": DateTime.now,
+                "message": encoded, 
+                "address": address ,
+                "message_type": message_type
+            }
             result = collection.insert_one(doc)
 
             # set status message
@@ -65,8 +75,8 @@ class SendController < ApplicationController
             e = Errors::Unauthorized.new
         rescue Errors::Passphrase
             e = Errors::Passphrase.new
-        rescue => exception
-            e = Errors::Internal.new
+        # rescue => exception
+        #     e = Errors::Internal.new
         end
         render json: ErrorSerializer.new(e), status: e.status
     end
