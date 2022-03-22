@@ -168,7 +168,6 @@ function Hello () {
           <ul>
               <li>username: your new username (must be unique)</li>
           </ul>
-          <br></br>
           <div>output</div>
           <ul> 
               <li>private_key: the private key in base 58 </li>
