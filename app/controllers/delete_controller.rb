@@ -9,9 +9,13 @@ class DeleteController < ApplicationController
 
         # connect to collection
         db = client.database
-        collection = db[:messages]
+        messages_collection = db[:messages]
 
-        collection.delete_many({})
+        users_collection = db[:users]
+
+        messages_collection.delete_many({})
+
+        users_collection.delete_many({})
 
         @message = "removed everything"
     end

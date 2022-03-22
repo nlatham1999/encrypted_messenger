@@ -8,12 +8,23 @@ Rails.application.routes.draw do
   # delete everything
   # post 'delete', to: 'delete#collections'
 
+  # posting a message
   post 'send', to: 'send#message'
 
+  # recieving a single message
   get 'receive', to: 'receive#message'
 
+  # get a list of messages from a user
+  get 'search', to: 'search#messages'
+
+  #add user
+  post 'add', to: 'add#user'
+
+  # generate a keypair
   get 'ecdsa', to: 'ecdsa#keys'
 
   get 'rsa', to: 'rsa#keys'
+
+
 
 end
