@@ -24,6 +24,7 @@ function Hello () {
   const [getMessage, setGetMessage] = useState("")
   const [showAlert, setShowAlert] = useState(false)
   const [alertMessage, setAlertMessage] = useState("")
+  const [generatedUser, setGeneratedUser] = useState("")
   
 
   useEffect(() => {
@@ -31,11 +32,15 @@ function Hello () {
   }, [])
 
   let getKeyPair = async () => {
-    let res = await fetch("https://encryptedposting.herokuapp.com/ecdsa", {
-        method: "GET",
+    let res = await fetch("https://encryptedposting.herokuapp.com/generate", {
+        method: "POST",
         headers: {
         "Content-Type": "application/json",
         },
+        body: JSON.stringify({
+          "username": generatedUser
+        })
+
     });
     let keyPair = await res.json();
     setPrivateKey(keyPair.message.private_key)
@@ -131,9 +136,51 @@ function Hello () {
           <p>created using Ruby (backend) with React (frontend) and lots of tlc</p>
         </div>
 
-        <h2 className='generalHeaders'>posting a message: /send</h2>
+        <h2 className='generalHeaders'>getting a key pair: </h2>
         <div className='generalText'>
-          <p>parameters</p>
+          <p>https://encryptedposting.herokuapp.com/ecdsa</p>
+          <p>this endpoint allows you to generate a private key and address so you can post messages</p>
+          <div>output</div>
+          <ul> 
+              <li>private_key: the private key in base 58 </li>
+              <li>address: the address which is the public key that has been hashed using SHA256 and then converted to base 58</li>
+          </ul>
+        </div>
+    
+        <h2 className='generalHeaders'>adding a user</h2>
+        <div className='generalText'>
+          <p>https://encryptedposting.herokuapp.com/add</p>
+          <p>with a private key and address you use this address to add a user</p>
+          <div>parameters</div>
+          <ul>
+              <li>private_key: the private key in base 58 </li>
+              <li>address: the address which is the public key that has been hashed using SHA256 and then converted to base 58</li>
+              <li>username: your new username (must be unique)</li>
+          </ul>
+          <p>use this same endpoint if you want to update your username</p>
+        </div>
+
+        <h2 className='generalHeaders'>generating a user</h2>
+        <div className='generalText'>
+          <p>https://encryptedposting.herokuapp.com/generate</p>
+          <p>alternatively, instead of creating a key pair and then adding the user, you can use this endpoint to combine the steps</p>
+          <div>parameters</div>
+          <ul>
+              <li>username: your new username (must be unique)</li>
+          </ul>
+          <br></br>
+          <div>output</div>
+          <ul> 
+              <li>private_key: the private key in base 58 </li>
+              <li>address: the address which is the public key that has been hashed using SHA256 and then converted to base 58</li>
+          </ul>
+        </div>
+
+
+        <h2 className='generalHeaders'>posting a message</h2>
+        <div className='generalText'>
+          <p>https://encryptedposting.herokuapp.com/send</p>
+          <div>parameters</div>
           <ul>
               <li>message: the message you want encrypted and stored</li>
               <li>private_key: the private key in base 58 </li>
@@ -142,12 +189,11 @@ function Hello () {
           </ul>
         </div>
     
-        <h2 className='generalHeaders'>getting a key pair: /ecdsa</h2>
-        <p className='generalText'>output: private key in base 58, public key hashed using SHA256 and in base 58</p>
-    
-        <h2 className='generalHeaders'>getting a message /receive</h2>
+        
+        <h2 className='generalHeaders'>getting a message</h2>
         <div className='generalText'>
-          <p>parameters</p>
+          <p>https://encryptedposting.herokuapp.com/receive</p>
+          <div>parameters</div>
           <ul>
               <li>message_id: the id of the message</li>
               <li>pass_phrase: the pass phrase used to encrypt your message. must be at least 16 characters</li>
@@ -160,14 +206,20 @@ function Hello () {
           <Card.Header>
             <Row>
               <Col>
-                create private key and address
+                generate user
               </Col>
               <Col className='button'>
-                <Button onClick={()=>getKeyPair()} >click here to generate</Button>
+                <Button onClick={()=>getKeyPair()} >click here to generate user</Button>
               </Col>
             </Row> 
           </Card.Header>
           <Card.Body>
+            <Form.Group className='formSection'>
+                <Form.Label>username</Form.Label>
+                <Form.Control 
+                    onChange={(event) => {setGeneratedUser(event.target.value)}}
+                />
+            </Form.Group>
             private key: {privateKey}<br></br>
             address: {address}
           </Card.Body>
