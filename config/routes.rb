@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   # get a list of messages from a user
   get 'search', to: 'search#messages'
 
+  # like search but also reads them
+  get 'read', to: 'read#messages'
+
   #add user
   post 'add', to: 'add#user'
 

@@ -176,7 +176,6 @@ function Hello () {
           </ul>
         </div>
 
-
         <h2 className='generalHeaders'>posting a message</h2>
         <div className='generalText'>
           <p>https://encryptedposting.herokuapp.com/send</p>
@@ -186,9 +185,9 @@ function Hello () {
               <li>private_key: the private key in base 58 </li>
               <li>address: the address which is the public key that has been hashed using SHA256 and then converted to base 58</li>
               <li>pass_phrase: the pass phrase used to encrypt your message. must be at least 16 characters</li>
+              <li>message_type: an optional parameter to categorize the message</li>
           </ul>
         </div>
-    
         
         <h2 className='generalHeaders'>getting a message</h2>
         <div className='generalText'>
