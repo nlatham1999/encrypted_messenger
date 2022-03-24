@@ -192,10 +192,34 @@ function Hello () {
         <h2 className='generalHeaders'>getting a message</h2>
         <div className='generalText'>
           <p>https://encryptedposting.herokuapp.com/receive</p>
+          <p>returns the message in decrypted plaintext</p>
           <div>parameters</div>
           <ul>
               <li>message_id: the id of the message</li>
               <li>pass_phrase: the pass phrase used to encrypt your message. must be at least 16 characters</li>
+          </ul>
+        </div>
+
+        <h2 className='generalHeaders'>search for messages</h2>
+        <div className='generalText'>
+          <p>https://encryptedposting.herokuapp.com/search</p>
+          <p>returns a list of message ids found</p>
+          <div>parameters</div>
+          <ul>
+              <li>username: the username of the message(s) poster</li>
+              <li>message_type: an extra filter for the type of messages. this is an optional parameter</li>
+          </ul>
+        </div>
+
+        <h2 className='generalHeaders'>search and read messages</h2>
+        <div className='generalText'>
+          <p>https://encryptedposting.herokuapp.com/read</p>
+          <p>returns a list of messages found in decrypted plaintext</p>
+          <div>parameters</div>
+          <ul>
+              <li>username: the username of the message(s) poster</li>
+              <li>pass_phrase: the pass phrase to decrypt the messages</li>
+              <li>message_type: an extra filter for the type of messages. this is an optional parameter</li>
           </ul>
         </div>
         
