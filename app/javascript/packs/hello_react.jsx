@@ -133,7 +133,7 @@ function Hello () {
           <p>you post messages with a pass phrase and anyone with that pass phrase and message id will be able to view that message</p>
           <p>messages are encrypted using PKCS5</p>
           <p>authentication of the sender is done with the ECDSA signature algorithm using the secp256k1 curve (same as Bitcoin)</p>
-          <p>messages are stored in a centralized database using mongodb (like decentralized but faster and better). </p>
+          <p>messages are stored using mongodb. </p>
           <p>created using Ruby (backend) with React (frontend) and lots of tlc</p>
         </div>
 
