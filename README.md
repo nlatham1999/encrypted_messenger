@@ -61,7 +61,7 @@ example output:
 }
 ```
 
-### posting a message
+### posting a message (POST)
 
 https://encryptedposting.herokuapp.com/send
 
@@ -82,7 +82,7 @@ example output:
 }
 ```
 
-### getting a message
+### getting a message (GET)
 
 https://encryptedposting.herokuapp.com/send
 
@@ -99,7 +99,7 @@ example output:
 }
 ```
 
-### search for messages
+### search for messages (GET)
 
 https://encryptedposting.herokuapp.com/search
 
@@ -123,7 +123,7 @@ example output
 }
 ```
 
-### search and read messages
+### search and read messages (GET)
 
 https://encryptedposting.herokuapp.com/read
 
