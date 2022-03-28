@@ -73,6 +73,81 @@ input:
 * message_type: an optional parameter to categorize the message
 
 example output:
+```
+{
+    "message": {
+        "status": 200,
+        "message_id": "62413a423929610dc444dbc07"
+    }
+}
+```
+
+### getting a message
+
+https://encryptedposting.herokuapp.com/send
+
+returns the message in decrypted plaintext
+
+input:
+* message_id: the id of the message
+* pass_phrase: the pass phrase to decrypt the message
+
+example output:
+```
+{
+    "message": "hello world"
+}
+```
+
+### search for messages
+
+https://encryptedposting.herokuapp.com/search
+
+returns a list of message_ids found
+
+input:  
+* username: the username of the message(s) poster  
+* message_type: an extra filter for the type of messages. this is an optional parameter
+
+example output
+```
+{
+    "message": {
+        "status": 200,
+        "ids": [
+            "62413cf59492130dc42dbc08",
+            "62413cff3496130dc425bc09",
+            "62413c049496130dc42dbc0a"
+        ]
+    }
+}
+```
+
+### search and read messages
+
+https://encryptedposting.herokuapp.com/read
+
+returns a list of messages found in decrypted plaintext
+
+parameters  
+* username: the username of the message(s) poster
+* pass_phrase: the pass phrase to decrypt the messages
+* message_type: an extra filter for the type of messages. this is an optional parameter
+
+example output:
+```
+{
+    "message": {
+        "status": 200,
+        "messages": [
+            "hello world",
+            "hello world1",
+            "hello world2"
+        ]
+    }
+}
+```
+
 
 
  
