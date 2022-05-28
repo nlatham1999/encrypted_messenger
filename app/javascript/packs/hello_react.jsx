@@ -70,7 +70,7 @@ function Hello () {
     });
     res = await res.json();
     try{
-      console.log("TEST" + res.message_id)
+      console.log("TEST" + res)
       setPostMessageId(res.message_id)
       setGetPassPhrase(postPassPhrase)
       setGetMessageId(res.message_id)
