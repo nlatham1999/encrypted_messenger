@@ -69,22 +69,22 @@ function Hello () {
         })
     });
     res = await res.json();
-    try{
+    // try{
       console.log("TEST" + res.message.id["$oid"])
       setPostMessageId(res.message.id["$oid"])
       setGetPassPhrase(postPassPhrase)
       setGetMessageId(res.message.id["$oid"])
     }
-    catch {
-      console.log("whoops")
-      console.log(res)
-      try{
-        setAlertMessage(res.errors[0].title)
-        setShowAlert(true)
-      }catch{
+    // catch {
+      // console.log("whoops")
+      // console.log(res)
+      // try{
+      //   setAlertMessage(res.errors[0].title)
+      //   setShowAlert(true)
+      // }catch{
 
-      }
-    }
+      // }
+    // }
   }
 
   let getUserMessage = async () => {
