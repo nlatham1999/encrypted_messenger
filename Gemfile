@@ -21,6 +21,8 @@ gem 'base58'
 # random numbers
 gem 'securerandom'
 
+gem 'tzinfo-data'
+
 # mongo
 gem 'mongo'
 
